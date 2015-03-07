@@ -1,3 +1,12 @@
+/*
+ * Распиновка модуля (сверху вниз)
+ * VCC
+ * MOSI - D11
+ * SS - D10
+ * SCK - D13
+ * GND
+*/
+
 #include <SPI.h>
 #define SS_PIN 10
 
