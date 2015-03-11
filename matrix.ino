@@ -9,6 +9,7 @@
 
 #include <SPI.h>
 #define SS_PIN 10
+#define COLS_NUM 8
 
 
 void setup() {
@@ -16,7 +17,8 @@ void setup() {
   pinMode(SS_PIN, OUTPUT);
 }
 
-int shift=0, timer=0, timerPrev=0, len=19;
+int shift=0, timer=0, timerPrev=0, 
+const int len=19;
 
 byte flower[]{
   0b00000000,
@@ -41,7 +43,8 @@ byte flower[]{
 };
 
 void loop() {
-
+  
+  // Сдвиг картинки
   timer = millis();                 
   if (timer-timerPrev>80){
     shift++;                        
@@ -49,7 +52,8 @@ void loop() {
     timerPrev=timer;
   }
 
-  for(int col = 0; col < 8; col++) {
+  // Отрисовка картинки
+  for(int col = 0; col < COLS_NUM; col++) {
     digitalWrite(SS_PIN,LOW);
     SPI.transfer(0xFF-flower[col+shift]);
     SPI.transfer(1<<(col));
